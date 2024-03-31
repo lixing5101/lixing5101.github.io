@@ -1,35 +1,153 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>My first styled page</title>
-   <link rel="stylesheet" href="mystyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>魔法小猫逃离世界！</title>
+    <style>
+    body { background-image: url('homework1/back1.gif');
+      background-size: cover;
+       background-repeat: repeat;
+  	     border:solid 20px pink;
+         border-radius:100px;
+         text-align: center;
+         font-family: Arial, sans-serif;
+         margin: 80px;
+        padding: 40px;
+
+    }
+    h1 {
+        font-size: 70px;
+      }
+      h2 {line-height: 1.2;
+          font-size: 40px;}
+        h3 {line-height: 1.2;}
+        .question {
+            margin-bottom: 20px;
+        }
+        .answer {
+          max-width: 240px;
+          height: auto;
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+
+        .answer {
+            border: 5px solid #FAEBD7	;
+            border-radius: 5px;
+            padding:2px;
+            cursor: pointer;
+        }
+
+
+    </style>
 </head>
-
 <body>
+    <h3>欢迎来到魔法小猫世界！</h3>
+    <div id="question1" class="question">
+        <h1>按“F”逃离世界！</h1>
+        <div class="options">
+          <img class="answer" src="homework1/f.gif" alt="答案 1" data-correct="true">
+       </div>
+   </div>
+        <div id="question2" class="question hidden">
+            <h1>1：哪只小猫喜欢做饭？</h1>
+            <div class="options">
+              <img class="answer" src="homework1/1.jpg" alt="答案 1" >
+              <img class="answer" src="homework1/2.jpg" alt="答案 2">
+              <img class="answer" src="homework1/3.jpg" alt="答案 3"data-correct="true">
+              <img class="answer" src="homework1/6.jpg" alt="答案 4">
+            </div>
 
-<!-- Site navigation menu -->
-<ul>
-  <li><a href="index.html">Home page</a>
-  <li><a href="musings.html">Musings</a>
-  <li><a href="town.html">My town</a>
-  <li><a href="links.html">Links</a>
-</ul>
+    </div>
+    <div id="question3" class="question hidden">
+        <h1>2：哪只小猫是女巫？</h1>
+        <div class="options">
+        <img class="answer" src="homework1/3.jpg" alt="答案 1" >
+        <img class="answer" src="homework1/1.jpg" alt="答案 2">
+        <img class="answer" src="homework1/6.jpg" alt="答案 3">
+        <img class="answer" src="homework1/7.jpg" alt="答案 4"data-correct="true">
+       </div>
+    </div>
+    <div id="question4" class="question hidden">
+        <h1>3：哪只小猫喜欢照相？</h1>
+          <div class="options">
+        <img class="answer" src="homework1/1.jpg" alt="答案 1" data-correct="true">
+        <img class="answer" src="homework1/2.jpg" alt="答案 2">
+        <img class="answer" src="homework1/4.jpg" alt="答案 3">
+        <img class="answer" src="homework1/6.jpg" alt="答案 4">
+    </div>
+ </div>
+ <div id="question5" class="question hidden">
+     <h1>45:哪只是出色的工程师？</h1>
+       <div class="options">
+         <img class="answer" src="homework1/2.jpg" alt="答案 1" >
+         <img class="answer" src="homework1/4.jpg" alt="答案 2"data-correct="true">
+         <img class="answer" src="homework1/6.jpg" alt="答案 3">
+         <img class="answer" src="homework1/7.jpg" alt="答案 4">
+     </div>
+</div>
 
-<!-- Main content -->
-<h1>My first styled page</h1>
 
-<p>Welcome to my styled page!
+  <div id="question6" class="question hidden">
+      <h1>5:哪只小猫来自非洲？</h1>
+        <div class="options">
+          <img class="answer" src="homework1/7.jpg" alt="答案 1" >
+          <img class="answer" src="homework1/6.jpg" alt="答案 2">
+          <img class="answer" src="homework1/3.jpg" alt="答案 3">
+          <img class="answer" src="homework1/2.jpg" alt="答案 4"data-correct="true">
+  </div>
+ </div>
 
-<p>It lacks images, but at least it has style.
-And it has links, even if they don't go
-anywhere&hellip;
+ <div id="question7" class="question hidden">
+     <h1>6：哪只小猫是男孩子？</h1>
+       <div class="options">
+     <img class="answer" src="homework1/1.jpg" alt="答案 1" >
+     <img class="answer" src="homework1/2.jpg" alt="答案 2">
+     <img class="answer" src="homework1/4.jpg" alt="答案 3">
+     <img class="answer" src="homework1/6.jpg" alt="答案 4"data-correct="true">
+ </div>
+</div>
+<div id="question8" class="question hidden">
+    <h2>谢谢你认识它们，</h2>
+      <h2>它们都是和刻板印象不同的小猫。</h2>
+        <h2>在这个世界里，</h2>
+        <h2>也请逃离刻板印象吧！！</h2>
+      <div class="options">
+</div>
+</div>
+    <script>
+        let correctAnswers = 0;
+        let currentQuestion = 1;
 
-<p>There should be more here, but I don't know
-what yet.
+        function checkAnswer(event) {
+            const isCorrect = event.target.dataset.correct === 'true';
+            const questionElement = event.target.closest('.question');
+            const nextQuestionElement = document.querySelector(`#question${currentQuestion + 1}`);
 
-<!-- Sign and date the page, it's only polite! -->
-<address>Made 5 April 2004<br>
-  by myself.</address>
+            if (isCorrect) {
+                correctAnswers++;
+                questionElement.classList.add('hidden');
+                nextQuestionElement.classList.remove('hidden');
+                currentQuestion++;
+
+                if (currentQuestion > 7) {
+                    showSummary();
+                }
+          }  else {
+                alert('不是哦！！再认识一下它们吧！');
+            }
+        }
+        function showSummary() {
+alert(`嘿嘿！恭喜你在魔法世界里认识了 ${correctAnswers} 只小猫。`);
+        }
+        const answers = document.querySelectorAll('.answer');
+        answers.forEach(answer => answer.addEventListener('click', checkAnswer));
+    </script>
 
 </body>
 </html>
