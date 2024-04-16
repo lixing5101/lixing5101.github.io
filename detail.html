@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* 防止滚动条出现 */
+  }
+
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+
+  .section {
+    position: relative;
+    overflow: hidden;
+    flex: 1; /* 自动填充剩余空间 */
+  }
+
+  .divider {
+    position: absolute;
+    top: 0;
+    right: 0; /* 将黑线放在右侧 */
+    height: 100%;
+    width: 2px;
+    background-color: #000;
+    z-index: 1; /* 确保分割线位于最上层 */
+    cursor: pointer;
+  }
+
+  .image {
+    position: absolute;
+    top: 100%; /* 初始时图片下移 */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 图片充满容器 */
+    transition: top 0.3s; /* 添加过渡效果 */
+  }
+
+  .image--expanded {
+  position: fixed;
+  width: auto;
+height: auto;
+  z-index: 9999; /* 确保放大的图片在最顶层 */
+}
+
+
+  .section:hover .image {
+    top: 0; /* 悬停时图片上升显示 */
+  }
+
+  /* 文本样式 */
+  .text {
+    position: absolute;
+    bottom: 10px;
+    left: 0; /* 左对齐 */
+    padding: 10px;
+    color: #000; /* 文本颜色 */
+    font-size:30px; /* 放大文本尺寸 */
+    line-height: 1.2; /* 设置行高 */
+  }
+
+
+
+  /* 页面文本渐显和上浮动画 */
+  @keyframes fade-in-float {
+    from {
+      opacity: 0; /* 初始时隐藏 */
+      transform: translateY(20px); /* 初始位置下移 */
+    }
+    to {
+      opacity: 1; /* 渐显 */
+      transform: translateY(0); /* 上浮至原位 */
+    }
+  }
+
+  /* 顶部文字 */
+  .top-text,
+  .top-right-text,
+  .top-center-text {
+    position: absolute;
+    opacity: 0; /* 初始时隐藏 */
+    animation: fade-in-float 1s forwards; /* 渐显和上浮动画 */
+  }
+
+  .top-text {
+    top: 20px;
+    left: 20px;
+  }
+
+  .top-right-text {
+    top: 20px;
+    right: 20px;
+      font-size: 120px;
+  }
+
+  .top-center-text {
+    top: 3%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 顶部文字每个字母渐显和浮动动画 */
+  .top-text span,
+  .top-right-text span,
+  .top-center-text span {
+    display: inline-block;
+    opacity: 0; /* 初始时隐藏 */
+    animation: fade-in-float 1s forwards; /* 渐显和上浮动画 */
+  }
+
+  .top-text span:nth-child(1),
+  .top-right-text span:nth-child(1),
+  .top-center-text span:nth-child(1) {
+    animation-delay: 0.5s; /* 第一个字母延迟0.5秒 */
+  }
+
+  .top-text span:nth-child(2),
+  .top-right-text span:nth-child(2),
+  .top-center-text span:nth-child(2) {
+    animation-delay: 0.6s; /* 第二个字母延迟0.6秒 */
+  }
+
+  .top-text span:nth-child(3),
+  .top-right-text span:nth-child(3),
+  .top-center-text span:nth-child(3) {
+    animation-delay: 0.7s; /* 第三个字母延迟0.7秒 */
+  }
+
+  .top-text span:nth-child(4),
+  .top-right-text span:nth-child(4),
+  .top-center-text span:nth-child(4) {
+    animation-delay: 0.8s; /* 第四个字母延迟0.8秒 */
+  }
+
+  .top-text span:nth-child(5),
+  .top-right-text span:nth-child(5),
+  .top-center-text span:nth-child(5) {
+    animation-delay: 0.9s; /* 第五个字母延迟0.9秒 */
+  }
+
+  .top-text span:nth-child(6),
+  .top-right-text span:nth-child(6),
+  .top-center-text span:nth-child(6) {
+    animation-delay: 1s; /* 第六个字母延迟1秒 */
+  }
+
+  .top-text span:nth-child(7),
+  .top-right-text span:nth-child(7),
+  .top-center-text span:nth-child(7) {
+    animation-delay: 1.1s; /* 第七个字母延迟1.1秒 */
+  }
+
+  .top-text span:nth-child(8),
+  .top-right-text span:nth-child(8),
+  .top-center-text span:nth-child(8) {
+    animation-delay: 1.2s; /* 第八个字母延迟1.2秒 */
+  }
+
+  .top-text span:nth-child(9),
+  .top-right-text span:nth-child(9),
+  .top-center-text span:nth-child(9) {
+    animation-delay: 1.3s; /* 第九个字母延迟1.3秒 */
+  }
+
+  .top-text span:nth-child(10),
+  .top-right-text span:nth-child(10),
+  .top-center-text span:nth-child(10) {
+    animation-delay: 1.4s; /* 第十个字母延迟1.4秒 */
+  }
+
+  /* 信息框 */
+  .info-box {
+    position: absolute;
+    top: 21%;
+    left: 51%;
+    width: 100px;
+    padding: 10px;
+
+    border: 1px solid #000; /* 边框 */
+    border-radius: 10px; /* 圆角 */
+    opacity: 0; /* 初始时隐藏 */
+    animation: fade-in-float 1s forwards, slide-up 0.5s 1.5s forwards; /* 渐显和上浮动画 */
+  }
+
+  /* 小方框最后渐显动画 */
+  .info-box {
+    animation-delay: 1.5s; /* 延迟1.5秒 */
+  }
+
+  /* 小方框上浮动画 */
+  @keyframes slide-up {
+    from {
+      transform: translateY(20px); /* 初始位置下移 */
+    }
+    to {
+      transform: translateY(0); /* 上浮至原位 */
+    }
+  }
+</style>
+</head>
+<body>
+<<div class="container">
+  <div class="section">
+    <img class="image" src="image1.jpg" alt="Image 1" onclick="expandImage(this)">
+    <div class="divider"></div>
+    <div class="text">IP设计<br>央视动漫-哪吒小猪熊项目</div>
+
+  </div>
+  <div class="section">
+    <img class="image" src="image2.jpg" alt="Image 2" onclick="expandImage(this)">
+    <div class="divider"></div>
+    <div class="text">摄影<br>2023.11.21  cuc</div> <!-- 文本内容 -->
+  </div>
+  <div class="section">
+    <img class="image" src="image3.jpg" alt="Image 3" onclick="expandImage(this)">
+    <div class="divider"></div>
+      <div class="text">包装设计<br>学院奖六必居</div><!-- 文本内容 -->
+  </div>
+  <div class="section">
+    <img class="image" src="image4.jpg" alt="Image 4" onclick="expandImage(this)">
+    <div class="text">blerder<br>buzhidao zenmeshuole </div> <!-- 文本内容 -->
+  </div>
+</div>
+
+<div class="top-text">
+  <span>L</span><span>i</span>&nbsp;&nbsp;<span>S</span><span>i</span><span>Y</span><span>i</span><span>n</span><span>g</span></div>
+<div class="top-right-text">
+  <span>S</span><span>o</span><span>m</span><span>e</span>&nbsp;<span>P</span><span>r</span><span>o</span><span>j</span><span>e</span><span>c</span><span>t</span>
+</div>
+<div class="top-center-text">
+  <span>Personal</span><span> </span><span></span><span></span><span></span>&nbsp;<span></span><span></span><span></span><span></span><span> page</span>
+</div>
+<div class="info-box">RETURN</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var images = document.querySelectorAll(".image");
+
+    images.forEach(function(image) {
+      image.addEventListener("click", function() {
+        this.classList.toggle("image--expanded");
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

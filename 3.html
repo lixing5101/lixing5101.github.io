@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Split Page</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+    }
+    .container4 {
+        display: flex;
+        height: 100vh;
+    }
+    .left-section {
+        flex: 1;
+        border-right: 1px solid black;
+        display: flex;
+        flex-direction: column;
+    }
+    .header5 {
+        text-align: left;
+        padding: 30px;
+         font-size: 80px;
+        align-self: flex-start;
+    }
+    .bottom-title {
+        text-align: left;
+        padding: 20px;
+        align-self: flex-end;
+    }
+    .right-section {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .navigation-container {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    .navigation-title {
+        text-align: center;
+        margin-bottom: 10px;
+        left:10px;
+        align-self: flex-start;
+    }
+    .navigation {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .navigation button {
+        padding: 10px 20px;
+        cursor: pointer;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #fff;
+        transition: transform 0.3s;
+    }
+    .navigation button:hover {
+        transform: scale(1.8);
+    }
+    .content4 {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+    }
+    .content4 img {
+        max-height: 80vh;
+        max-width: calc(100% - 20px);
+        border: 5px solid lightblue; /* 修改为天蓝色 */
+        border-radius: 10px;
+    }
+    .right-bottom-title {
+        padding: 20px;
+        text-align: left;
+        align-self: flex-end; /* 右下角对齐 */
+    }
+</style>
+</head>
+<body>
+    <div class="container4">
+        <div class="left-section">
+            <div class="header5">
+                <h1>Graphic Design</h1>
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="navigation-container">
+                <h2 class="navigation-title">"万达文创"</h2>
+                <div class="navigation">
+                    <button onclick="showImage('image11.jpg')">image1</button>
+                    <button onclick="showImage('image12.jpg')">image2</button>
+                    <button onclick="showImage('image13.jpg')">image3</button>
+                    <button onclick="showImage('image11.jpg')">image1</button>
+                    <button onclick="showImage('image12.jpg')">image2</button>
+                    <button onclick="showImage('image13.jpg')">image3</button>
+
+
+                </div>
+            </div>
+            <div class="content4">
+                <img id="displayedImage" src="" alt="">
+            </div>
+            <div class="right-bottom-title">
+                <h2>Li SiYing Page</h2>
+            </div>
+        </div>
+        <div class="bottom-title">
+            <h2>Graphic Design</h2>
+        </div>
+    </div>
+
+    <script>
+        function showImage(imageName) {
+            document.getElementById("displayedImage").src = imageName;
+        }
+    </script>
+</body>
+</html>
